@@ -1,0 +1,23 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Model weights downloaded at runtime
+*.pt
+*.pth
+
+# Extracted frames & training runs (large, generated artefacts)
+output_frames/
+runs/
+
+# OS / editor artefacts
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
