@@ -1,0 +1,7 @@
+# Core deep-learning and computer-vision dependencies
+ultralytics>=8.0.0        # YOLOv8 – person detection + YOLOv8-cls training
+torch>=2.0.0              # PyTorch
+torchvision>=0.15.0       # Pre-trained models (EfficientNet, ResNet) + transforms
+opencv-python>=4.8.0      # Video I/O
+Pillow>=9.0.0             # Image loading (used by torchvision)
+numpy>=1.24.0             # Numerical operations
