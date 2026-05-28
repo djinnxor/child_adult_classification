@@ -38,8 +38,10 @@ from torch.utils.data import DataLoader
 from torchvision import datasets, models, transforms
 from torchvision.models import (
     EfficientNet_B0_Weights,
+    EfficientNet_V2_S_Weights,
     ResNet18_Weights,
     ResNet50_Weights,
+    MobileNet_V3_Large_Weights,
 )
 
 
@@ -95,6 +97,11 @@ def build_model(backbone: str, num_classes: int = 2) -> nn.Module:
         in_features = model.classifier[1].in_features
         model.classifier[1] = nn.Linear(in_features, num_classes)
 
+    elif backbone == "efficientnet_v2_s":
+        model = models.efficientnet_v2_s(weights=EfficientNet_V2_S_Weights.DEFAULT)
+        in_features = model.classifier[1].in_features
+        model.classifier[1] = nn.Linear(in_features, num_classes)
+
     elif backbone == "resnet50":
         model = models.resnet50(weights=ResNet50_Weights.DEFAULT)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
@@ -102,11 +109,16 @@ def build_model(backbone: str, num_classes: int = 2) -> nn.Module:
     elif backbone == "resnet18":
         model = models.resnet18(weights=ResNet18_Weights.DEFAULT)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
+    
+    elif backbone == "mobilenet_v3_l":
+        model = models.mobilenet_v3_large(weights=MobileNet_V3_Large_Weights.DEFAULT)
+        in_features = model.classifier[3].in_features
+        model.classifier[3] = nn.Linear(in_features, num_classes)
 
     else:
         raise ValueError(
             f"Unknown backbone '{backbone}'. "
-            "Choose from: efficientnet, resnet50, resnet18, yolov8"
+            "Choose from: efficientnet, efficientnet_v2_s, resnet50, resnet18, mobilenet_v3_l, yolov8"
         )
 
     return model
