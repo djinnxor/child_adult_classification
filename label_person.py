@@ -8,8 +8,8 @@ original ``.txt`` with the corrected labels in standard YOLO format
 
 Usage
 -----
-    python label_persons.py --images_dir output_frames/video_name
-    python label_persons.py --images_dir images --labels_dir labels
+    python label_person.py --images_dir output_frames/video_name
+    python label_person.py --images_dir images --labels_dir labels
 
 Controls
 --------

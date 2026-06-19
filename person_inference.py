@@ -6,7 +6,7 @@ from ultralytics import YOLO
 
 # Multi-class detector: 0 -> person, 1 -> scooter (finetuned from person-only weights
 # on a person + scooter mix dataset).
-MODEL_PATH = "/home/rookie/Documents/Minje/child_adult_classification/runs/detect/runs/train/yolov8n_person-7/weights/best.pt"
+MODEL_PATH = "/home/rookie/Documents/Minje/child_adult_classification/runs/detect/runs/train/yolov8n_person-12/weights/best.pt"
 
 # BGR colors per class id; falls back to white for unknown ids.
 CLASS_COLORS = {
@@ -151,7 +151,7 @@ def main():
     src.add_argument("--image_path", help="Path to input image")
     parser.add_argument("--output_path", default=None, help="Path to save annotated output (optional)")
     parser.add_argument("--model", default=MODEL_PATH, help="Path to YOLO model weights")
-    parser.add_argument("--conf", type=float, default=0.5, help="Confidence threshold")
+    parser.add_argument("--conf", type=float, default=0.4, help="Confidence threshold")
     parser.add_argument("--show", action="store_true", help="Display result while processing")
     args = parser.parse_args()
 

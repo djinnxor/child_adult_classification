@@ -18,7 +18,7 @@ from ultralytics import YOLO
 from train_flat import build_model, get_transforms
 
 
-DEFAULT_DETECTOR = "runs/detect/runs/train/yolov8n_person-6/weights/best.pt"
+DEFAULT_DETECTOR = "runs/detect/runs/train/yolov8n_person-11/weights/best.pt"
 DEFAULT_CLASSIFIER = "runs/train/best_model.pth"
 DEFAULT_DETECTOR_CLASSES = [0]  # 0 = person (works for COCO yolov8n.pt and the fine-tuned single-class detector)
 
@@ -195,7 +195,8 @@ def run(video, output, detector_path, classifier_path, detector_classes,
         if writer:
             writer.write(frame)
         if show:
-            cv2.imshow("classify_realtime", frame)
+            display = cv2.resize(frame, (1200, 700))
+            cv2.imshow("classify_realtime", display)
             if cv2.waitKey(max(1, int(1000 / fps))) & 0xFF == ord("q"):
                 break
 
@@ -229,7 +230,7 @@ def main():
                              "Use 0 for COCO yolov8n.pt or the single-class "
                              "fine-tuned person detector. Pass multiple to "
                              "filter (e.g. --detector-classes 0 1).")
-    parser.add_argument("--conf", type=float, default=0.6,
+    parser.add_argument("--conf", type=float, default=0.4,
                         help="Detector confidence threshold.")
     parser.add_argument("--pad", type=float, default=0.08,
                         help="Bounding-box padding fraction before crop.")
