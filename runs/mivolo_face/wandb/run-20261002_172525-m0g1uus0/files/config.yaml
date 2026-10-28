@@ -1,0 +1,197 @@
+_wandb:
+    value:
+        cli_version: 0.30.0
+        e:
+            2aadk3jhc1cv7dqjw7qhz7dh6wph4l9k:
+                args:
+                    - --data-root
+                    - /mnt/Transcend/ekyc_age_gender_20261002/annotations
+                    - --images
+                    - /mnt/Transcend/ekyc_age_gender_20261002/images
+                    - --csv-pattern
+                    - ekyc_{split}.csv
+                    - --init
+                    - models/mivolo_volo_d1_face_imdb.pth.tar
+                    - --mlops-project
+                    - mivolo
+                    - --mlops-parents
+                    - art-001,ds-001,act-001
+                    - --wandb
+                    - --wandb-project
+                    - mivolo
+                    - --wandb-tags
+                    - from_b
+                codePath: train_mivolo.py
+                codePathLocal: train_mivolo.py
+                cpu_count: 12
+                cpu_count_logical: 20
+                cudaVersion: "13.0"
+                disk:
+                    /:
+                        total: "729079742464"
+                        used: "689729630208"
+                email: mmsuren0909@gmail.com
+                executable: /home/rookie/Documents/Minje/child_adult_classification/.venv/bin/python
+                git:
+                    commit: 3605e9be95772dccadf192f6f9271edff98097cb
+                    remote: https://github.com/minje1112/child_adult_classification.git
+                gpu: NVIDIA GeForce RTX 3090
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Ampere
+                      cudaCores: 10496
+                      memoryTotal: "25769803776"
+                      name: NVIDIA GeForce RTX 3090
+                      uuid: GPU-22a90009-aa7d-a4c6-ec19-adb068c9d9dd
+                host: rookie-B650M-H-M-2
+                memory:
+                    total: "33347620864"
+                os: Linux-6.17.0-40-generic-x86_64-with-glibc2.39
+                program: /home/rookie/Documents/Minje/child_adult_classification/train_mivolo.py
+                python: CPython 3.12.3
+                root: runs/mivolo_face
+                startedAt: "2026-10-02T09:25:25.819847Z"
+                writerId: 2aadk3jhc1cv7dqjw7qhz7dh6wph4l9k
+        m:
+            - "1": global_step
+              "6":
+                - 3
+              "7": []
+            - "1": epoch
+              "6":
+                - 3
+              "7": []
+            - "1": val/mae
+              "6":
+                - 3
+              "7":
+                - 1
+            - "2": train/*
+              "5": 1
+              "6":
+                - 1
+              "7": []
+            - "2": val/*
+              "5": 2
+              "6":
+                - 1
+              "7": []
+            - "2": epoch/*
+              "5": 2
+              "6":
+                - 1
+              "7": []
+        python_version: 3.12.3
+        t:
+            "1":
+                - 1
+                - 41
+                - 49
+                - 63
+            "2":
+                - 1
+                - 41
+                - 49
+                - 63
+            "3":
+                - 2
+                - 7
+                - 13
+                - 15
+                - 16
+                - 62
+                - 63
+            "4": 3.12.3
+            "5": 0.30.0
+            "12": 0.30.0
+            "13": linux-x86_64
+amp:
+    value: bf16
+batch_size:
+    value: 192
+clip_grad:
+    value: null
+compile:
+    value: false
+csv_pattern:
+    value: ekyc_{split}.csv
+data_root:
+    value: /mnt/Transcend/ekyc_age_gender_20261002/annotations
+dataset_name:
+    value: null
+device:
+    value: cuda
+drop:
+    value: 0.32
+drop_path:
+    value: 0.32
+ema:
+    value: false
+ema_decay:
+    value: 0.9998
+epochs:
+    value: 220
+eval_only:
+    value: false
+gender_weight:
+    value: 0.03
+grad_checkpointing:
+    value: false
+hflip:
+    value: 0.5
+images:
+    value: /mnt/Transcend/ekyc_age_gender_20261002/images
+init:
+    value: models/mivolo_volo_d1_face_imdb.pth.tar
+jitter:
+    value: 0.45
+limit:
+    value: null
+log_every:
+    value: 50
+lr:
+    value: 1.5e-05
+lr_base_batch:
+    value: 192
+max_steps:
+    value: null
+min_lr:
+    value: 1e-07
+n_train:
+    value: 731
+n_val:
+    value: 131
+no_lds:
+    value: false
+only_age:
+    value: false
+output:
+    value: runs/mivolo_face
+peak_lr:
+    value: 1.5e-05
+predictions:
+    value: null
+rand_aug:
+    value: rand-m22-n2-mstd0.5-mmax30
+reprob:
+    value: 0.5
+resume:
+    value: null
+seed:
+    value: 42
+split:
+    value: valid
+steps_per_epoch:
+    value: 3
+train_split:
+    value: train
+val_every:
+    value: 1
+warmup_epochs:
+    value: 25
+warmup_lr:
+    value: 1e-06
+weight_decay:
+    value: 5e-05
+workers:
+    value: 8

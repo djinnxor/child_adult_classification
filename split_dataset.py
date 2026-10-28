@@ -4,9 +4,15 @@ Build YOLO train/valid/test splits.
 Two modes
 ---------
 - flat:  split a single flat folder of images + YOLO .txt labels.
-- merge: walk a parent folder containing multiple YOLO-template datasets
-         (each with some of train/valid/test, each having images/ + labels/),
-         combine every pair, shuffle, and re-split into one dataset.
+- merge: recursively walk a parent folder, collecting every image that has a
+         sibling .txt label in the same directory, combine them all, shuffle,
+         and split into one dataset.
+
+         Designed for a tree like:
+             <parent>/<source>/<clip>/  img.jpg + img.txt  (+ cropped/ ...)
+         where labels sit next to their images.  Any directory named "cropped"
+         is ignored, and frames are de-duplicated by filename stem so the same
+         frame extracted into several folders never lands in two splits.
 
 Output structure
 ----------------
@@ -21,12 +27,11 @@ Usage
     python split_dataset.py flat  --input_dir output_frames/video_name
     python split_dataset.py flat  --input_dir data --output_dir dataset \\
         --train 0.8 --val 0.1 --test 0.1
-    python split_dataset.py merge --input_dir all_datasets --output_dir dataset
+    python split_dataset.py merge --input_dir "/home/rookie/Desktop/person dataset/labeled"
 """
 
 import argparse
 import random
-import re
 import shutil
 from pathlib import Path
 
@@ -34,10 +39,15 @@ import yaml
 
 IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".bmp"}
 SPLIT_NAMES = ("train", "valid", "test")
+# Substrings that mark a directory to skip while walking in merge mode (e.g.
+# "cropped", "cropped after labeling" — crops that carry no labels and would
+# otherwise be mistaken for data). Matched case-insensitively as substrings.
+IGNORE_DIR_SUBSTRINGS = ("cropped",)
 
 
-def _sanitize(name: str) -> str:
-    return re.sub(r"[^A-Za-z0-9._-]+", "_", name).strip("_") or "ds"
+def _is_ignored_dir(name: str) -> bool:
+    low = name.lower()
+    return any(sub in low for sub in IGNORE_DIR_SUBSTRINGS)
 
 
 def _write_splits(
@@ -126,6 +136,19 @@ def split_dataset(
     )
 
 
+def _iter_label_folders(root: Path):
+    """Yield every directory under root (inclusive) that is not ignored.
+
+    Directories named in IGNORE_DIRS (and everything below them) are pruned.
+    """
+    if _is_ignored_dir(root.name):
+        return
+    yield root
+    for child in sorted(root.iterdir()):
+        if child.is_dir() and not _is_ignored_dir(child.name):
+            yield from _iter_label_folders(child)
+
+
 def merge_datasets(
     input_dir: Path,
     output_dir: Path,
@@ -137,41 +160,47 @@ def merge_datasets(
     assert abs(train_ratio + val_ratio + test_ratio - 1.0) < 1e-6, \
         "Ratios must sum to 1.0"
 
-    # Each immediate subfolder is treated as a YOLO-template dataset.
-    dataset_dirs = sorted(d for d in input_dir.iterdir() if d.is_dir())
-    if not dataset_dirs:
-        raise SystemExit(f"No dataset subfolders found in: {input_dir}")
+    if not input_dir.is_dir():
+        raise SystemExit(f"Input dir does not exist: {input_dir}")
 
+    # Recursively gather (image, sibling .txt) pairs from every folder, ignoring
+    # `cropped/` dirs. Frames are de-duplicated by stem so the same frame copied
+    # into multiple folders never ends up split across train/valid/test.
     pairs: list[tuple[Path, Path, str]] = []
+    seen_stems: dict[str, Path] = {}
     total_skipped = 0
-    for ds_dir in dataset_dirs:
-        ds_prefix = _sanitize(ds_dir.name)
-        ds_count = 0
-        for split in SPLIT_NAMES:
-            images_dir = ds_dir / split / "images"
-            labels_dir = ds_dir / split / "labels"
-            if not (images_dir.is_dir() and labels_dir.is_dir()):
+    total_dupes = 0
+    folders_with_data = 0
+
+    for folder in _iter_label_folders(input_dir):
+        folder_pairs, skipped = _pairs_from_flat_folder(folder)
+        total_skipped += skipped
+        if not folder_pairs:
+            continue
+        folders_with_data += 1
+        kept = 0
+        for img_path, lbl_path in folder_pairs:
+            stem = img_path.stem
+            if stem in seen_stems:
+                total_dupes += 1
                 continue
-            for img_path in sorted(images_dir.iterdir()):
-                if img_path.suffix.lower() not in IMAGE_EXTS:
-                    continue
-                lbl_path = labels_dir / f"{img_path.stem}.txt"
-                if not lbl_path.exists():
-                    total_skipped += 1
-                    continue
-                # Prefix keeps filenames unique across datasets/splits.
-                out_stem = f"{ds_prefix}__{split}__{img_path.stem}"
-                pairs.append((img_path, lbl_path, out_stem))
-                ds_count += 1
-        print(f"  {ds_dir.name}: {ds_count} pair(s)")
+            seen_stems[stem] = img_path
+            pairs.append((img_path, lbl_path, stem))
+            kept += 1
+        rel = folder.relative_to(input_dir)
+        print(f"  {rel}: {kept} pair(s)" +
+              (f" ({len(folder_pairs) - kept} dup)" if kept != len(folder_pairs)
+               else ""))
 
     if total_skipped:
         print(f"Skipped {total_skipped} image(s) without matching .txt")
+    if total_dupes:
+        print(f"Skipped {total_dupes} duplicate frame(s) (same filename stem)")
     if not pairs:
         raise SystemExit(f"No image/label pairs found under: {input_dir}")
 
-    print(f"Combined {len(pairs)} image/label pair(s) from "
-          f"{len(dataset_dirs)} dataset folder(s)")
+    print(f"Combined {len(pairs)} unique image/label pair(s) from "
+          f"{folders_with_data} folder(s)")
     _write_splits(pairs, output_dir, train_ratio, val_ratio, seed)
 
 

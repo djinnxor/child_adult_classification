@@ -14,10 +14,15 @@ env/
 
 # Extracted frames & training runs (large, generated artefacts)
 output_frames/
-runs/
 
 # OS / editor artefacts
 .DS_Store
 Thumbs.db
 .idea/
 .vscode/
+*.pth.tar
+
+# eKYC annotations contain customer IDs: keep them out of git
+ekyc_labels/
+runs/mivolo_face_smoke
+runs/wandb

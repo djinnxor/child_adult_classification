@@ -1,0 +1,24 @@
+2026-10-02 17:25:25,826 INFO    MainThread:1085111 [wandb_setup.py:_flush():81] Current SDK version is 0.30.0
+2026-10-02 17:25:25,826 INFO    MainThread:1085111 [wandb_setup.py:_flush():81] Configure stats pid to 1085111
+2026-10-02 17:25:25,826 INFO    MainThread:1085111 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2026-10-02 17:25:25,827 INFO    MainThread:1085111 [wandb_init.py:setup_run_log_directory():739] Logging user logs to runs/mivolo_face/wandb/run-20261002_172525-m0g1uus0/logs/debug.log
+2026-10-02 17:25:25,827 INFO    MainThread:1085111 [wandb_init.py:setup_run_log_directory():740] Logging internal logs to runs/mivolo_face/wandb/run-20261002_172525-m0g1uus0/logs/debug-internal.log
+2026-10-02 17:25:25,827 INFO    MainThread:1085111 [wandb_init.py:init():783] calling init triggers
+2026-10-02 17:25:25,827 INFO    MainThread:1085111 [wandb_init.py:init():788] wandb.init called with sweep_config: {}
+config: {'data_root': '/mnt/Transcend/ekyc_age_gender_20261002/annotations', 'images': '/mnt/Transcend/ekyc_age_gender_20261002/images', 'csv_pattern': 'ekyc_{split}.csv', 'output': 'runs/mivolo_face', 'train_split': 'train', 'split': 'valid', 'limit': None, 'init': 'models/mivolo_volo_d1_face_imdb.pth.tar', 'resume': None, 'eval_only': False, 'predictions': None, 'only_age': False, 'epochs': 220, 'batch_size': 192, 'lr': 1.5e-05, 'lr_base_batch': 192, 'weight_decay': 5e-05, 'warmup_epochs': 25, 'warmup_lr': 1e-06, 'min_lr': 1e-07, 'clip_grad': None, 'gender_weight': 0.03, 'no_lds': False, 'drop': 0.32, 'drop_path': 0.32, 'rand_aug': 'rand-m22-n2-mstd0.5-mmax30', 'jitter': 0.45, 'reprob': 0.5, 'hflip': 0.5, 'ema': False, 'ema_decay': 0.9998, 'amp': 'bf16', 'grad_checkpointing': False, 'compile': False, 'workers': 8, 'device': 'cuda', 'seed': 42, 'val_every': 1, 'log_every': 50, 'max_steps': None, 'dataset_name': None, 'peak_lr': 1.5e-05, 'steps_per_epoch': 3, 'n_train': 731, 'n_val': 131, '_wandb': {}}
+2026-10-02 17:25:25,828 INFO    MainThread:1085111 [wandb_init.py:init():831] starting backend
+2026-10-02 17:25:25,828 INFO    MainThread:1085111 [wandb_init.py:init():846] sending inform_init request
+2026-10-02 17:25:25,851 INFO    MainThread:1085111 [wandb_init.py:init():851] backend started and connected
+2026-10-02 17:25:25,855 INFO    MainThread:1085111 [wandb_init.py:init():921] updated telemetry
+2026-10-02 17:25:25,872 INFO    MainThread:1085111 [wandb_init.py:init():944] communicating run to backend with 90.0 second timeout
+2026-10-02 17:25:26,755 INFO    MainThread:1085111 [wandb_init.py:init():981] starting run threads in backend
+2026-10-02 17:25:26,791 INFO    MainThread:1085111 [wandb_run.py:_console_start():2531] atexit reg
+2026-10-02 17:25:26,791 INFO    MainThread:1085111 [wandb_run.py:_redirect():2381] redirect: wrap_raw
+2026-10-02 17:25:26,791 INFO    MainThread:1085111 [wandb_run.py:_redirect():2450] Wrapping output streams.
+2026-10-02 17:25:26,791 INFO    MainThread:1085111 [wandb_run.py:_redirect():2473] Redirects installed.
+2026-10-02 17:25:26,792 INFO    MainThread:1085111 [wandb_init.py:init():1019] run started, returning control to user process
+2026-10-02 17:36:15,488 INFO    MainThread:1085111 [wandb_run.py:_finish():2303] finishing run mmsuren0909-rookie-systems/mivolo/m0g1uus0
+2026-10-02 17:36:15,488 INFO    MainThread:1085111 [wandb_run.py:_atexit_cleanup():2498] got exitcode: 0
+2026-10-02 17:36:15,488 INFO    MainThread:1085111 [wandb_run.py:_restore():2480] restore
+2026-10-02 17:36:15,488 INFO    MainThread:1085111 [wandb_run.py:_restore():2486] restore done
+2026-10-02 17:36:18,320 INFO    MainThread:1085111 [wandb_run.py:_footer_sync_info():3901] logging synced files

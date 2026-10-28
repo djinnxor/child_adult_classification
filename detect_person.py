@@ -166,7 +166,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--model",
-        default="yolov8n.pt",
+        default="runs/detect/runs/train/yolov8n_person-18/weights/best.pt",
         help="YOLOv8n weights file or model name (default: yolov8n.pt)",
     )
     parser.add_argument(
