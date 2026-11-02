@@ -9,8 +9,7 @@ venv/
 env/
 
 # Model weights downloaded at runtime
-*.pt
-*.pth
+
 
 # Extracted frames & training runs (large, generated artefacts)
 output_frames/
@@ -23,6 +22,5 @@ Thumbs.db
 *.pth.tar
 
 # eKYC annotations contain customer IDs: keep them out of git
-ekyc_labels/
 runs/mivolo_face_smoke
 runs/wandb
