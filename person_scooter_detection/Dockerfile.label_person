@@ -1,10 +1,10 @@
 # ── Dockerfile.label_person ──────────────────────────────────────────────────
 # Runs label_person.py inside Docker with X11 display forwarding.
 #
-# Build:
+# Build (run from this directory, person_scooter_detection/):
 #   docker build -f Dockerfile.label_person -t label-person .
 #
-# Run (Linux host):
+# Run (Linux host, from this directory):
 #   ./docker-run-label.sh --images_dir /data/frames
 # ─────────────────────────────────────────────────────────────────────────────
 

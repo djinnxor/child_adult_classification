@@ -1,15 +1,15 @@
 """
-Interactive YOLO Labeler (adult / child)
-========================================
+Interactive YOLO Labeler (adult / scooter)
+===========================================
 Loads image + YOLO annotation pairs, lets the user edit bounding boxes and
-toggle each box between **adult (0)** and **child (1)**, and overwrites the
-original ``.txt`` with the corrected labels in standard YOLO format
+toggle each box between **adult (0)** and **scooter (1)**, and overwrites
+the original ``.txt`` with the corrected labels in standard YOLO format
 (``class cx cy w h``).
 
 Usage
 -----
-    python label_person.py --images_dir output_frames/video_name
-    python label_person.py --images_dir images --labels_dir labels
+    python person_scooter_detection/label_person.py --images_dir output_frames/video_name
+    python person_scooter_detection/label_person.py --images_dir images --labels_dir labels
 
 Controls
 --------

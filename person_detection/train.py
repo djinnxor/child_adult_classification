@@ -20,13 +20,13 @@ Expected dataset layout (ImageFolder-compatible)
 Usage examples
 --------------
     # EfficientNet (default, recommended)
-    python train.py --data_dir dataset --backbone efficientnet --epochs 50
+    python person_detection/train.py --data_dir dataset --backbone efficientnet --epochs 50
 
     # ResNet-50
-    python train.py --data_dir dataset --backbone resnet50 --epochs 50
+    python person_detection/train.py --data_dir dataset --backbone resnet50 --epochs 50
 
     # YOLOv8 classification head
-    python train.py --data_dir dataset --backbone yolov8 --epochs 50
+    python person_detection/train.py --data_dir dataset --backbone yolov8 --epochs 50
 """
 
 import argparse

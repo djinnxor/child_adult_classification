@@ -17,9 +17,9 @@ Output structure
 
 Usage
 -----
-    python detect_person.py --video_path path/to/video.mp4
-    python detect_person.py --video_path path/to/video.mp4 --output_dir frames --conf 0.4
-    python detect_person.py --video_path path/to/video.mp4 --model yolov12n.pt
+    python person_scooter_detection/detect_person.py --video_path path/to/video.mp4
+    python person_scooter_detection/detect_person.py --video_path path/to/video.mp4 --output_dir frames --conf 0.4
+    python person_scooter_detection/detect_person.py --video_path path/to/video.mp4 --model yolov12n.pt
 """
 
 import argparse

@@ -14,8 +14,8 @@ and APPENDED to the matching <stem>.txt in the split's labels/ folder
 
 Usage
 -----
-    python person_detection_images.py --dataset_dir dataset
-    python person_detection_images.py --dataset_dir dataset \\
+    python person_detection/person_detection_images.py --dataset_dir dataset
+    python person_detection/person_detection_images.py --dataset_dir dataset \\
         --detector runs/.../best.pt --classifier runs/train/best_model.pth \\
         --conf 0.6
 """

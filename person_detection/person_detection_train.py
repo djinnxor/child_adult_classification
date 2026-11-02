@@ -25,9 +25,9 @@ YAML file format (dataset.yaml)
 
 Usage
 -----
-    python person_detection_train.py --data dataset.yaml
-    python person_detection_train.py --data dataset.yaml --epochs 100 --imgsz 640
-    python person_detection_train.py --data dataset.yaml --resume   # resume from last.pt
+    python person_detection/person_detection_train.py --data dataset.yaml
+    python person_detection/person_detection_train.py --data dataset.yaml --epochs 100 --imgsz 640
+    python person_detection/person_detection_train.py --data dataset.yaml --resume   # resume from last.pt
 """
 
 import argparse

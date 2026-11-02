@@ -39,32 +39,32 @@ summary; review: each decision and your pace; export: what went where).
 
 Usage
 -----
-    python ekyc_age_gender.py predict --root ~/Documents/Minje/ekyc_results
-    python ekyc_age_gender.py predict --root ... --limit 1000   # a first batch only;
+    python face_age_gender/ekyc_age_gender.py predict --root ~/Documents/Minje/ekyc_results
+    python face_age_gender/ekyc_age_gender.py predict --root ... --limit 1000   # a first batch only;
                                           # run again to add the next 1000
-    python ekyc_age_gender.py review  --root ~/Documents/Minje/ekyc_results
-    python ekyc_age_gender.py review  --root ~/Documents/Minje/ekyc_results \\
+    python face_age_gender/ekyc_age_gender.py review  --root ~/Documents/Minje/ekyc_results
+    python face_age_gender/ekyc_age_gender.py review  --root ~/Documents/Minje/ekyc_results \\
         --sort pred_age --max-age 25          # likely children first
-    python ekyc_age_gender.py export --valid 0.15 --test 0.15
+    python face_age_gender/ekyc_age_gender.py export --valid 0.15 --test 0.15
 
     # everything needed to train elsewhere in one archive: reviewed images,
     # MiVOLO-format CSVs, train_mivolo.py, the starting checkpoint, README
-    python ekyc_age_gender.py package --root ~/Documents/Minje/ekyc_results
+    python face_age_gender/ekyc_age_gender.py package --root ~/Documents/Minje/ekyc_results
 
     # fine-tune the IMDB model on the reviewed images (a few thousand images
     # are far too few to train from ImageNet), then compare on the same test
     # split: the untouched model first, the fine-tuned one after
     D="--data-root ekyc_labels --images ~/Documents/Minje/ekyc_results --csv-pattern ekyc_{split}.csv"
-    python train_mivolo.py $D --eval-only --split test \\
+    python face_age_gender/train_mivolo.py $D --eval-only --split test \\
         --init models/mivolo_volo_d1_face_imdb.pth.tar
-    python train_mivolo.py $D --init models/mivolo_volo_d1_face_imdb.pth.tar \\
+    python face_age_gender/train_mivolo.py $D --init models/mivolo_volo_d1_face_imdb.pth.tar \\
         --epochs 30 --warmup-epochs 3 --lr 1e-5 --batch-size 32 --log-every 10 \\
         --output runs/ekyc_finetune_1
-    python train_mivolo.py $D --eval-only --split test \\
+    python face_age_gender/train_mivolo.py $D --eval-only --split test \\
         --init runs/ekyc_finetune_1/best.pth.tar
 
     # if it is better, let it pre-annotate the next batch (fewer corrections)
-    python ekyc_age_gender.py predict --root ... --limit 1000 \\
+    python face_age_gender/ekyc_age_gender.py predict --root ... --limit 1000 \\
         --checkpoint runs/ekyc_finetune_1/best.pth.tar
 
 Review keys
@@ -453,7 +453,7 @@ def cmd_predict(args):
     track_annotations(tracker, args.labels, rows,
                       note=f"pre-labelled {len(todo)} more images with {Path(args.checkpoint).name}",
                       parents=[exp_id] if exp_id else None)
-    log.info(f"next: python ekyc_age_gender.py review --root {args.root}")
+    log.info(f"next: python face_age_gender/ekyc_age_gender.py review --root {args.root}")
 
 
 # --------------------------------------------------------------------------

@@ -26,18 +26,18 @@ Setup
 Usage
 -----
     # full training
-    python train_mivolo.py --data-root ~/Downloads/archive
+    python face_age_gender/train_mivolo.py --data-root ~/Downloads/archive
 
     # quick smoke test on a small subset
-    python train_mivolo.py --data-root ~/Downloads/archive --limit 512 \\
+    python face_age_gender/train_mivolo.py --data-root ~/Downloads/archive --limit 512 \\
         --epochs 2 --warmup-epochs 1 --batch-size 32 --output runs/mivolo_face_smoke
 
     # continue after a crash / reboot
-    python train_mivolo.py --data-root ~/Downloads/archive \\
+    python face_age_gender/train_mivolo.py --data-root ~/Downloads/archive \\
         --resume runs/mivolo_face/last.pth.tar
 
     # evaluate on the test split
-    python train_mivolo.py --data-root ~/Downloads/archive --eval-only \\
+    python face_age_gender/train_mivolo.py --data-root ~/Downloads/archive --eval-only \\
         --init runs/mivolo_face/best.pth.tar --split test
 
 Tracking (see tracking.py)

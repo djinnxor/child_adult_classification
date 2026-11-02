@@ -6,9 +6,9 @@ image is a full photo and you already know the face's pixel box.
 
 Usage
 -----
-    python infer_mivolo.py path/to/face_crop.jpg
-    python infer_mivolo.py path/to/photo.jpg --box x0 y0 x1 y1
-    python infer_mivolo.py path/to/face_crop.jpg --checkpoint runs/mivolo_face/best.pth.tar
+    python face_age_gender/infer_mivolo.py path/to/face_crop.jpg
+    python face_age_gender/infer_mivolo.py path/to/photo.jpg --box x0 y0 x1 y1
+    python face_age_gender/infer_mivolo.py path/to/face_crop.jpg --checkpoint runs/mivolo_face/best.pth.tar
 """
 
 import argparse

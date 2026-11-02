@@ -10,9 +10,9 @@ end up with no annotations).
 
 Usage
 -----
-    python label_fixer.py fix --labels_dir path/to/labels --old_id 1 --new_id 0
-    python label_fixer.py crop --base_dir path/to/split
-    python label_fixer.py clean --dataset_dir path/to/dataset \\
+    python person_detection/label_fixer.py fix --labels_dir path/to/labels --old_id 1 --new_id 0
+    python person_detection/label_fixer.py crop --base_dir path/to/split
+    python person_detection/label_fixer.py clean --dataset_dir path/to/dataset \\
         --remove 2 3 --rename 1:0 4:2
 """
 

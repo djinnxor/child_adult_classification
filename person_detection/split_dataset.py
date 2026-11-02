@@ -24,10 +24,10 @@ Output structure
 
 Usage
 -----
-    python split_dataset.py flat  --input_dir output_frames/video_name
-    python split_dataset.py flat  --input_dir data --output_dir dataset \\
+    python person_detection/split_dataset.py flat  --input_dir output_frames/video_name
+    python person_detection/split_dataset.py flat  --input_dir data --output_dir dataset \\
         --train 0.8 --val 0.1 --test 0.1
-    python split_dataset.py merge --input_dir "/home/rookie/Desktop/person dataset/labeled"
+    python person_detection/split_dataset.py merge --input_dir "/home/rookie/Desktop/person dataset/labeled"
 """
 
 import argparse

@@ -24,9 +24,9 @@ well on small CCTV datasets. Fallbacks:
 
 Usage
 -----
-    python train_flat.py --data_dir labeled --epochs 40
-    python train_flat.py --data_dir labeled --backbone efficientnet --epochs 50
-    python train_flat.py --data_dir labeled --backbone mobilenet_v3_l --img_size 224
+    python person_detection/train_flat.py --data_dir labeled --epochs 40
+    python person_detection/train_flat.py --data_dir labeled --backbone efficientnet --epochs 50
+    python person_detection/train_flat.py --data_dir labeled --backbone mobilenet_v3_l --img_size 224
 
 Saves a checkpoint compatible with classify_realtime.py / eval_classifier.py:
     {epoch, backbone, classes, state_dict, val_acc} -> runs/train/best_model.pth

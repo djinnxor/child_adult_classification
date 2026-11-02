@@ -7,7 +7,7 @@ bounding boxes on the image, and displays it.
 
 Usage
 -----
-    python show_annotation.py --label path/to/<split>/labels/<name>.txt
+    python person_detection/show_annotation.py --label path/to/<split>/labels/<name>.txt
 """
 
 import argparse
